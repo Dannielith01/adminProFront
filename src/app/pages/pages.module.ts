@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 // Modules
 import { SharedModule } from '../shared/shared.module';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 // Routes
 import { PAGES_ROUTES } from './pages.routes';
@@ -33,7 +34,8 @@ import { IncrementerComponent } from '../components/incrementer/incrementer.comp
     imports: [
         SharedModule,
         PAGES_ROUTES,
-        FormsModule
+        FormsModule,
+        ChartsModule
     ]
 })
 
