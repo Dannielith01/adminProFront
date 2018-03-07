@@ -3,13 +3,13 @@
         <h3 class="card-title"> Pruebas </h3>
         <div class="progress ap-progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" 
-                role="progressbar" [attr.ariaValuenow]="progress" aria-valuenow="75" aria-valuemin="0" 
-                aria-valuemax="100" [style.width]="progress + '%'"></div>
+                role="progressbar" [attr.ariaValuenow]="blueProgress" aria-valuenow="75" aria-valuemin="0" 
+                aria-valuemax="100" [style.width]="blueProgress + '%'"></div>
         </div>
         <div class="progress ap-progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" 
-                role="progressbar" [attr.ariaValuenow]="progress" aria-valuenow="75" aria-valuemin="0" 
-                aria-valuemax="100" [style.width]="progress + '%'"></div>
+                role="progressbar" [attr.ariaValuenow]="greenProgress" aria-valuenow="75" aria-valuemin="0" 
+                aria-valuemax="100" [style.width]="greenProgress + '%'"></div>
         </div>
     </div>
 </div>
@@ -18,19 +18,7 @@
     <div class="col-6">
         <div class="card">
             <div class="card-body">
-                <div class="input-group mb-3">
-                    <div class="input-group-btn">
-                        <button class="btn btn-outline-primary" type="button" (click)="changeValue(-5)">
-                            <i class="mdi mdi-minus"></i>
-                        </button>
-                    </div>
-                    <input type="text" class="form-control" name="progress" [(ngModel)]="progress">
-                    <div class="input-group-btn">
-                        <button class="btn btn-outline-primary" type="button" (click)="changeValue(5)">
-                            <i class="mdi mdi-plus"></i>
-                        </button>
-                    </div>
-                </div>
+                <app-incrementer (updateValue)="blueProgress = $event" title="Blue bar" [progress]="blueProgress"></app-incrementer>
             </div>
         </div>
     </div>
@@ -38,7 +26,7 @@
     <div class="col-6">
         <div class="card">
             <div class="card-body">
-                <app-incrementer></app-incrementer>
+                <app-incrementer (updateValue)="greenProgress = $event" title="green bar" [progress]="greenProgress"></app-incrementer>
             </div>
         </div>
     </div>

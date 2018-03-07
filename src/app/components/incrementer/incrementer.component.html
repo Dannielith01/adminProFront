@@ -1,15 +1,18 @@
 <h3>{{ title }}</h3>
 
 <div class="input-group">
-  <div class="input-group-btn">
-      <button class="btn btn-secondary" type="button">
-          <i class="mdi mdi-minus"></i>
-      </button>
-  </div>
-  <input type="text" class="form-control" name="progress" [(ngModel)]="progress">
-  <div class="input-group-btn">
-      <button class="btn btn-secondary" type="button">
-          <i class="mdi mdi-plus"></i>
-      </button>
-  </div>
+    <div class="input-group-btn">
+        <button class="btn btn-outline-primary" type="button" (click)="changeValue(-5)">
+            <i class="mdi mdi-minus"></i>
+        </button>
+    </div>
+
+    <input #inputProgress type="number" class="form-control" name="progress" 
+        [(ngModel)]="progress" (ngModelChange)="onChangeModel($event)" min="1" max="100">
+
+    <div class="input-group-btn">
+        <button class="btn btn-outline-primary" type="button" (click)="changeValue(5)">
+            <i class="mdi mdi-plus"></i>
+        </button>
+    </div>
 </div>
