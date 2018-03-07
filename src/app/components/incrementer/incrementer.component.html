@@ -8,7 +8,7 @@
     </div>
 
     <input #inputProgress type="number" class="form-control" name="progress" 
-        [(ngModel)]="progress" (ngModelChange)="onChangeModel($event)" min="1" max="100">
+        [(ngModel)]="progress" (ngModelChange)="onChangeModel($event)" min="0" max="100">
 
     <div class="input-group-btn">
         <button class="btn btn-outline-primary" type="button" (click)="changeValue(5)">
