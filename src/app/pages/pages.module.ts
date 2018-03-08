@@ -16,6 +16,7 @@ import { PagesComponent } from './pages.component';
 
 // Temporal
 import { IncrementerComponent } from '../components/incrementer/incrementer.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { IncrementerComponent } from '../components/incrementer/incrementer.comp
         ProgressComponent,
         GraphComponent,
         PagesComponent,
-        IncrementerComponent
+        IncrementerComponent,
+        AccountSettingsComponent
     ],
     exports: [
         DashboardComponent,
