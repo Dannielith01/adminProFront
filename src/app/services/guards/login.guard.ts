@@ -9,8 +9,6 @@ export class LoginGuard implements CanActivate {
   ) {}
 
   canActivate(): boolean {
-    console.log(localStorage.getItem('token'));
-
     if ( localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null ) {
       return true;
     } else {
