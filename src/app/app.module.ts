@@ -26,7 +26,7 @@ import { RegisterComponent } from './login/register.component';
     PagesModule,
     FormsModule,
     ReactiveFormsModule,
-    ServiceModule
+    ServiceModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

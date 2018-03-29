@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
 
     this.form = new FormGroup({
       name: new FormControl( null, Validators.required ),
+      lastName: new FormControl( null, Validators.required ),
       email: new FormControl( null, [Validators.required, Validators.email] ),
       pass: new FormControl( null, Validators.required ),
       confirmPass: new FormControl( null, Validators.required),
@@ -35,6 +36,7 @@ export class RegisterComponent implements OnInit {
 
     this.form.setValue({
       name: 'Daniel',
+      lastName: 'Zavala',
       email: 'Daniel@test.com',
       pass: '123',
       confirmPass: '123',
@@ -54,7 +56,7 @@ export class RegisterComponent implements OnInit {
 
     const user = new User(
       this.form.value.name,
-      'NA',
+      this.form.value.lastName,
       this.form.value.email,
       this.form.value.pass,
     );
