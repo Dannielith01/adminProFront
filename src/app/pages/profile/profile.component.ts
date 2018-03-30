@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   newImage: File;
+  imagePreview: File;
 
   constructor(
     public userService: UserService
@@ -31,12 +32,17 @@ export class ProfileComponent implements OnInit {
   }
 
   selectImage( file: File ) {
-    if (!file) {
+    if ( !file || file.type.indexOf('image') < 0 ) {
       this.newImage = null;
       return;
     }
 
     this.newImage = file;
+
+    const reader = new FileReader();
+    const urlImagePreview = reader.readAsDataURL( file );
+
+    reader.onloadend = () => this.imagePreview = reader.result;
   }
 
   updateImage() {
