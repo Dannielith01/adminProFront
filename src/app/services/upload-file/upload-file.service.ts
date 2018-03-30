@@ -13,12 +13,11 @@ export class UploadFileService {
       const formData = new FormData();
       const xhr = new XMLHttpRequest();
 
-      formData.append('img', file, file.name);
+      formData.append('img', file);
 
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4 ) {
           if (xhr.status === 200) {
-            console.log('Listo');
             resolve( xhr.response );
           } else {
             console.log('Algo salió mal');

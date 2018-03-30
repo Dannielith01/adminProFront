@@ -9,6 +9,8 @@ import { UploadFileService } from '../upload-file/upload-file.service';
 @Injectable()
 export class UserService {
 
+  user: User;
+
   constructor(
     public http: HttpClient,
     public router: Router,
@@ -27,6 +29,7 @@ export class UserService {
     return this.http.post( url, user )
                 .map((resp: any) => {
                   this.saveLocalStorage(resp);
+                  this.user = resp.user;
                 });
   }
 
@@ -57,13 +60,20 @@ export class UserService {
     return this.http.put( url, data )
                .map((resp: any) => {
                  this.saveLocalStorage(resp);
+                 this.user = resp.user;
                });
   }
 
   updateImage( file: File, id: string) {
+
     this.uploadFileService.uploadFile( file, 'users', id)
-        .then( resp => {
-          console.log('Then: ', resp);
+        .then( (resp: any) => {
+          const respJson = JSON.parse(resp);
+
+          this.user.img = respJson.user.img;
+
+          this.saveLocalStorage( respJson );
+
         })
         .catch( resp => {
           console.log('Catch: ', resp);
@@ -82,8 +92,11 @@ export class UserService {
 
 
   private saveLocalStorage(resp: any) {
-    localStorage.setItem('id', resp.id);
-    localStorage.setItem('token', resp.token);
+    const id = resp.id || this.getUser()._id;
+    const token = resp.token || this.getToken();
+
+    localStorage.setItem('id', id);
+    localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(resp.user));
   }
 
