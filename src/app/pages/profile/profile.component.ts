@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateImage() {
-    // this.userService.updateImage( this.newImage, this.user._id );
+    this.userService.updateImage( this.newImage, this.user._id );
   }
 
 }

@@ -27,7 +27,7 @@ export class UploadFileService {
         }
       };
 
-      const url = `${URL_SERVICES} /upload/ ${type} / ${id}`;
+      const url = `${URL_SERVICES}/upload/${type}/${id}`;
 
       xhr.open('PUT', url, true);
       xhr.send( formData );
