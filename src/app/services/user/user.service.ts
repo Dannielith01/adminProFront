@@ -15,7 +15,10 @@ export class UserService {
     public http: HttpClient,
     public router: Router,
     public uploadFileService: UploadFileService,
-  ) { }
+  ) {
+    this.user = this.getUser();
+    console.log(this.user.img);
+  }
 
   login( user: User, remember: boolean = false ) {
     const url = URL_SERVICES + '/login';

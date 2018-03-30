@@ -36,12 +36,12 @@
     </div>
     <div class="col-lg-6">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" align="center">
                 <h4 class="card-title">User photo</h4>
                 <h6 class="card-subtitle">made with bootstrap elements</h6>
+                <br>
+                <img [src]="user.img | image" alt="" class="img">
                 <br><br>
-                <img src="" alt="">
-
                 <input (change)="selectImage( $event.target.files[0] )" type="file">
                 <br><br>
                 <button type="button" (click)="updateImage()" [disabled]="!newImage" class="btn btn-block btn-success waves-effect waves-light m-r-10">
