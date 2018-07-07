@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-rxjs',
@@ -9,9 +8,6 @@ import { Observable } from 'rxjs/Observable';
 export class RxjsComponent implements OnInit {
 
   constructor() {
-    let obs = new Observable(observer => {
-      
-    });
   }
 
   ngOnInit() {

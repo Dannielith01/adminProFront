@@ -6,6 +6,8 @@ import { User } from '../../models/user.model';
 import { URL_SERVICES } from '../../config/config';
 import { UploadFileService } from '../upload-file/upload-file.service';
 
+import { map } from 'rxjs/operators';
+
 @Injectable()
 export class UserService {
 
@@ -17,7 +19,6 @@ export class UserService {
     public uploadFileService: UploadFileService,
   ) {
     this.user = this.getUser();
-    console.log(this.user.img);
   }
 
   login( user: User, remember: boolean = false ) {
@@ -30,10 +31,12 @@ export class UserService {
     }
 
     return this.http.post( url, user )
-                .map((resp: any) => {
-                  this.saveLocalStorage(resp);
-                  this.user = resp.user;
-                });
+        .pipe(
+            map((resp: any) => {
+                this.saveLocalStorage(resp);
+                this.user = resp.user;
+            })
+        );
   }
 
   logout() {
@@ -48,10 +51,12 @@ export class UserService {
     const url = URL_SERVICES + '/user';
 
     return this.http.post( url, user )
-        .map((resp: any) => {
-          // TODO: poner un alert de usuario creado correctamente.
-          return resp.user;
-        });
+        .pipe(
+            map((resp: any) => {
+              // TODO: poner un alert de usuario creado correctamente.
+              return resp.user;
+            })
+        );
   }
 
   updateUser( user: User ) {
@@ -61,10 +66,12 @@ export class UserService {
     data.token = this.getToken();
 
     return this.http.put( url, data )
-               .map((resp: any) => {
-                 this.saveLocalStorage(resp);
-                 this.user = resp.user;
-               });
+        .pipe(
+            map((resp: any) => {
+              this.saveLocalStorage(resp);
+              this.user = resp.user;
+            })
+        );
   }
 
   updateImage( file: File, id: string) {

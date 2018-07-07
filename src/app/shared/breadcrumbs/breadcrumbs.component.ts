@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivationEnd } from '@angular/router';
 import { Title, Meta, MetaDefinition } from '@angular/platform-browser';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
+
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -19,7 +19,7 @@ export class BreadcrumbsComponent implements OnInit {
     private meta: Meta
   ) {
     this._getDataRoute()
-    .subscribe( data => {
+    .subscribe( (data: any) => {
       this.route = data.title;
       this.title.setTitle( this.route );
 
@@ -33,10 +33,11 @@ export class BreadcrumbsComponent implements OnInit {
   }
 
   private _getDataRoute() {
-    return this.router.events
-    .filter( event => event instanceof ActivationEnd)
-    .filter( (events: ActivationEnd) => events.snapshot.firstChild === null )
-    .map( (event: ActivationEnd) => event.snapshot.data );
+    return this.router.events.pipe(
+        filter( event => event instanceof ActivationEnd),
+        filter( (events: ActivationEnd) => events.snapshot.firstChild === null ),
+        map( (event: ActivationEnd) => event.snapshot.data ),
+    );
   }
 
   ngOnInit() {
